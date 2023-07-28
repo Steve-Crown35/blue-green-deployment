@@ -10,7 +10,7 @@ Setup the Environments:
 Clone the repository:
 
 1. create a github account if you do not already have one. Use https://docs.github.com/en/get-started/signing-up-for-github/signing-up-for-a-new-github-account for instructions on how to create one.
-2. create a new folder on your machine and run the following command on your terminal (command prompt or git bash): git clone https://github.com/Steve-Crown35/blue-green-deployment.git
+2. create a new folder on your machine, open a terminal, navigate into the folder and run the following command (command prompt or git bash): "git clone https://github.com/Steve-Crown35/blue-green-deployment.git"
 3. navigate into the repo "blue-green-deployment".
 
 Running the scripts:
@@ -23,11 +23,11 @@ Running the scripts:
 
 -- Create the docker containers, one for each environment
 
-1. docker build -t blue-hello-world:latest .
-2. docker build -t green-hello-world:latest .
-3. run "docker images" to get a list of all docker images in the VM
-4. run "docker run -d --name blue-hello-world --network blue_network -p 8080:80 blue-hello-world:latest" to create the blue environment container
-5. run "docker run -d --name green-hello-world --network green_network -p 8081:80 green-hello-world:latest" to create the green environment container
+1. run "docker build -t blue-hello-world:latest ." to build the docker image for the blue environment.
+2. run "docker build -t green-hello-world:latest ." to build the docker image for the green environment.
+3. run "docker images" to get a list of all docker images in the VM.
+4. run "docker run -d --name blue-hello-world --network blue_network -p 8080:80 blue-hello-world:latest" to create the blue environment container.
+5. run "docker run -d --name green-hello-world --network green_network -p 8081:80 green-hello-world:latest" to create the green environment container.
 6. use "docker ps" to get the list of running containers. Note the containers' IDs.
 7. use "docker inspect container_id | grep IPAddress" to get the IPAddress assigned to the container.Replace container_id with the actual container ID from step 6. Repeat step 7 for the second container.
 
