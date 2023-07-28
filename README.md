@@ -29,13 +29,14 @@ Running the scripts:
 4. run "docker run -d --name blue-hello-world -p 8080:80 blue-hello-world:latest" to create the blue environment container.
 5. run "docker run -d --name green-hello-world -p 8081:80 green-hello-world:latest" to create the green environment container.
 6. use "docker ps" to get the list of running containers. Note the containers' IDs.
-7. use "docker inspect container_id | grep IPAddress" to get the IPAddress assigned to the container.Replace container_id with the actual container ID from step 6. Repeat step 7 for the second container.
+7. use "docker inspect container_id | grep IPAddress" to get the IPAddress assigned to the container. Replace container_id with the actual container ID from step 6. Repeat step 7 for the second container.
 
 -- Configure nginx server to serve as a reverse proxy
 
 1. navigate to sites-available directory in the nginx file system by running "cd /etc/nginx/sites-available"
-2. create two configuration files blue.conf and green.conf by open a text editor (e.g nano)
-using "sudo nano blue.conf". copy and patse the following configuration:
+2. create two configuration files blue.conf and green.conf by opening a text editor (e.g nano)
+using "sudo nano blue.conf".  Copy and patse the following configuration:
+
 upstream blue-env {
   server container_IP:8080;
 }
@@ -58,7 +59,8 @@ server {
 }
 
 Replace container_IP in the above with the IPAddress of the blue-hello-world container from step 7 above under "Create the docker containers, one for each environment" section. Use "ctrl + s" to save and "ctrl + x" to exit the editor.
-3. Repeat step 2 for the green container and copy and paste the following configuration: 
+3. Repeat step 2 for the green container and copy and paste the following configuration:
+ 
 upstream green-env {
   server container_IP:8081;
 }
