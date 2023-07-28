@@ -38,49 +38,78 @@ Running the scripts:
 using "sudo nano blue.conf".  Copy and patse the following configuration:
 
 upstream blue-env {
+
   server container_IP:8080;
+
 }
 
 server {
+
   listen 80;
+
   server_name localhost;
 
+
   location / {
+
     proxy_http_version 1.1;
+
     proxy_set_header Connection "";
+
     proxy_set_header Host $host;
+
     proxy_set_header X-Real-IP $remote_addr;
+
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
     proxy_set_header X-Forwarded-Host $host;
+
     proxy_set_header X-Forwarded-Server $host;
+
     
     proxy_pass http://blue-env;
+
   }
+
 }
 
 Replace container_IP in the above with the IPAddress of the blue-hello-world container from step 7 above under "Create the docker containers, one for each environment" section. Use "ctrl + s" to save and "ctrl + x" to exit the editor.
 3. Repeat step 2 for the green container and copy and paste the following configuration:
- 
+
 upstream green-env {
+
   server container_IP:8081;
+
 }
 
 server {
+
   listen 80;
+
   server_name localhost;
 
   location / {
+
     proxy_http_version 1.1;
+
     proxy_set_header Connection "";
+
     proxy_set_header Host $host;
+
     proxy_set_header X-Real-IP $remote_addr;
+
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
     proxy_set_header X-Forwarded-Host $host;
+
     proxy_set_header X-Forwarded-Server $host;
 
     proxy_pass http://green-env;
+
   }
+
 }
+
 Replace container_IP in the above with the IPAddress of the green-hello-world container from step 7 above under "Create the docker containers, one for each environment" section. Use "ctrl + s" to save and "ctrl + x" to exit the editor.
 
 4. run "sudo ln -s /etc/nginx/sites-available/blue.conf /etc/nginx/sites-enabled/blue.conf" and "sudo ln -s /etc/nginx/sites-available/green.conf /etc/nginx/sites-enabled/green.conf" to create symbolic links between the sites-available and sites-enabled.
