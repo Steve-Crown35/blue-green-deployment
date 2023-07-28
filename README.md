@@ -26,8 +26,8 @@ Running the scripts:
 1. run "docker build -t blue-hello-world:latest ." to build the docker image for the blue environment.
 2. run "docker build -t green-hello-world:latest ." to build the docker image for the green environment.
 3. run "docker images" to get a list of all docker images in the VM.
-4. run "docker run -d --name blue-hello-world --network blue_network -p 8080:80 blue-hello-world:latest" to create the blue environment container.
-5. run "docker run -d --name green-hello-world --network green_network -p 8081:80 green-hello-world:latest" to create the green environment container.
+4. run "docker run -d --name blue-hello-world -p 8080:80 blue-hello-world:latest" to create the blue environment container.
+5. run "docker run -d --name green-hello-world -p 8081:80 green-hello-world:latest" to create the green environment container.
 6. use "docker ps" to get the list of running containers. Note the containers' IDs.
 7. use "docker inspect container_id | grep IPAddress" to get the IPAddress assigned to the container.Replace container_id with the actual container ID from step 6. Repeat step 7 for the second container.
 
